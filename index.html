@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Drawing App Enno</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="app-container">
+        <h1>Drawing App Enno</h1>
+        
+        <div id="main-content">
+            <div id="left-panel">
+                
+                <div class="main-mode-selector">
+                    <input type="radio" id="mode-draw" name="main_mode" value="draw" checked>
+                    <label for="mode-draw">Mode Gambar</label>
+                    
+                    <input type="radio" id="mode-transform" name="main_mode" value="transform">
+                    <label for="mode-transform">Mode Transformasi</label>
+                </div>
+
+                <div id="drawing-controls">
+                    <h4>Alat Gambar</h4>
+                    <div class="control-group">
+                        <label for="shape">Bentuk:</label>
+                        <select id="shape">
+                            <option value="dot">Titik</option>
+                            <option value="line">Garis</option>
+                            <option value="rect">Persegi</option>
+                            <option value="circle">Lingkaran</option>
+                            <option value="ellipse">Elips</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="color">Warna Objek:</label>
+                        <input type="color" id="color" value="#000000">
+                    </div>
+                    <div class="control-group">
+                        <label for="line-width">Tebal:</label>
+                        <input type="range" id="line-width" min="1" max="50" value="3">
+                        <span id="line-width-value">3</span>
+                    </div>
+                </div>
+
+                <div id="mouse-coords-display">
+                    <span class="coords-label">Koordinat Mouse</span>
+                    <span id="coords-output">X: -, Y: -</span>
+                </div>
+
+                 <div class="action-buttons">
+                    <button id="undo-button">Undo</button>
+                    <button id="redo-button">Redo</button>
+                    <button id="clear-button">Hapus Objek</button>
+                </div>
+
+                <div id="transform-controls" style="display: none;">
+                    <h4>Transformasi Objek</h4>
+                    <div class="control-group">
+                       <label for="translate-x">Geser X:</label>
+                       <input type="number" id="translate-x" value="0">
+                       <label for="translate-y">Geser Y:</label>
+                       <input type="number" id="translate-y" value="0">
+                   </div>
+                   <div class="control-group">
+                       <label for="scale-factor">Skala:</label>
+                       <input type="range" id="scale-factor" min="0.1" max="5" value="1" step="0.1">
+                       <span id="scale-value">1.0</span>
+                   </div>
+                   <div class="control-group">
+                       <label for="rotation-angle">Rotasi:</label>
+                       <input type="range" id="rotation-angle" min="0" max="360" value="0" step="1">
+                       <span id="rotation-value">0°</span>
+                   </div>
+                </div>
+
+                <div id="object-inspector" style="display: none;">
+                    <h4>Info Objek</h4>
+                    <pre id="inspector-output"></pre>
+                </div>
+            </div>
+            
+            <div id="canvas-area">
+                <canvas id="canvas" width="800" height="600"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js"></script>
+    <script type="text/python" src="main.py"></script>
+    <script type="text/python">
+        from browser import document
+        def on_load(event):
+            brython()
+        document.bind("DOMContentLoaded", on_load)
+    </script>
+</body>
+</html>
